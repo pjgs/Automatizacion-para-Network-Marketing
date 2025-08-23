@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada - Felipe Gascón</title>
+    <link rel="icon" type="image/webp" href="images/favicoin_fg.webp">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6ERXSWPX6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H6ERXSWPX6');
+    </script>
+    
+    <style>
+        :root {
+            --neon-green: #7eff00;
+            --dark-green: #6dd600;
+            --black: #000000;
+            --dark-gray: #111111;
+            --medium-gray: #333333;
+            --light-gray: #666666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            background-image: url('images/fondo_fg.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 800;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(0, 255, 136, 0.5); }
+            to { text-shadow: 0 0 50px rgba(0, 255, 136, 0.8), 0 0 70px rgba(0, 255, 136, 0.3); }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 4px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            margin: 0 10px 10px 0;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .secondary-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--neon-green);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid var(--neon-green);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px 10px 0;
+        }
+
+        .secondary-button:hover {
+            background: var(--neon-green);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .network-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            height: 1px;
+            animation: flow 8s linear infinite;
+        }
+
+        @keyframes flow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .cta-button, .secondary-button {
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg" id="animatedBg"></div>
+    
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>¡Oops! <span class="highlight-text">Página no encontrada</span></h1>
+        <p>La página que buscas no existe o ha sido movida. Pero no te preocupes, puedes encontrar todo lo que necesitas sobre automatización para Network Marketing en nuestra página principal.</p>
+        
+        <div>
+            <a href="/" class="cta-button">Ir a la página principal</a>
+            <a href="javascript:history.back()" class="secondary-button">Volver atrás</a>
+        </div>
+    </div>
+
+    <script>
+        // Animated Background
+        function createNetworkLines() {
+            const bg = document.getElementById('animatedBg');
+            const lines = 10;
+            
+            for (let i = 0; i < lines; i++) {
+                const line = document.createElement('div');
+                line.className = 'network-line';
+                line.style.top = Math.random() * 100 + '%';
+                line.style.animationDelay = Math.random() * 8 + 's';
+                line.style.animationDuration = (8 + Math.random() * 4) + 's';
+                bg.appendChild(line);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createNetworkLines();
+        });
+
+        // Track 404 errors in Google Analytics
+        gtag('event', 'page_view', {
+            'page_title': '404 Error',
+            'page_location': window.location.href
+        });
+    </script>
+</body>
+</html>
