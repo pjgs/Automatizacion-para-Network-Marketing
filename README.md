@@ -98,7 +98,6 @@ Landing page profesional para servicios de automatización y marketing digital e
 
 ## 📞 Contacto
 
-- **Email**: contacto@felipegascon.com
 - **Facebook**: (https://www.facebook.com/profile.php?id=61577021310549)
 - **Instagram**: (https://www.instagram.com/planifyxia/)
 
