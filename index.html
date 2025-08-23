@@ -38,7 +38,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            background-color: var(--black);
+            background-image: url('images/fondo_fg.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
@@ -50,291 +55,303 @@
             padding: 0 20px;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-green);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: radial-gradient(ellipse at center, rgba(126, 255, 0, 0.1) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .highlight {
-            color: var(--neon-green);
-            text-shadow: 0 0 20px rgba(126, 255, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--neon-green), var(--dark-green));
-            color: var(--black);
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(126, 255, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(126, 255, 0, 0.4);
-            background: linear-gradient(45deg, var(--dark-green), var(--neon-green));
-        }
-
-        /* Network Animation */
-        .network-bg {
+        /* Animated Background */
+        .animated-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 1;
+            z-index: -1;
         }
 
         .network-line {
             position: absolute;
             background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
             height: 1px;
-            animation: networkFlow 8s linear infinite;
-            opacity: 0.3;
+            animation: flow 8s linear infinite;
         }
 
-        @keyframes networkFlow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100vw); }
+        @keyframes flow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateX(100vw); opacity: 0; }
         }
 
-        /* Sections */
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: transparent;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .highlight-text {
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 0px 16px;
+            border-radius: 8px;
+            display: inline-block;
+            text-shadow: none;
+            animation: none;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 40px rgba(0, 255, 136, 0.3); }
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--neon-green);
+            color: var(--black);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Section Styles */
         .section {
             padding: 100px 0;
             position: relative;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            margin-bottom: 60px;
-            color: var(--neon-green);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(126, 255, 0, 0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .feature:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-green);
-            box-shadow: 0 20px 40px rgba(126, 255, 0, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--neon-green);
-            margin-bottom: 20px;
-        }
-
-        .feature h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 3rem;
             color: var(--white);
         }
 
-        .feature p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
+        /* Problem Section */
+        .problem {
+            background: transparent;
         }
 
-        /* Stats */
-        .stats {
-            background: rgba(126, 255, 0, 0.1);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .stats-grid {
+        .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .stat {
-            padding: 20px;
+        .problem-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
+        .problem-item:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .problem-item i {
+            font-size: 2.5rem;
             color: var(--neon-green);
-            display: block;
+            margin-bottom: 1rem;
+            animation: iconPulse 2s ease-in-out infinite;
         }
 
-        .stat-label {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-top: 10px;
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        /* Process */
+        .problem-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        /* Solution Section */
+        .solution {
+            background: transparent;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .solution-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(145deg, rgba(0, 255, 136, 0.05), rgba(0, 255, 136, 0.02));
+            border-radius: 16px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .solution-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .solution-item i {
+            font-size: 4rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .solution-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+        }
+
+        /* Process Section */
+        .process {
+            background: transparent;
+        }
+
         .process-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
-        .step {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
+        .process-step {
             text-align: center;
             position: relative;
-            border: 1px solid rgba(126, 255, 0, 0.2);
         }
 
         .step-number {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
             background: var(--neon-green);
             color: var(--black);
-            width: 30px;
-            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
         }
 
-        .step h3 {
-            margin: 20px 0 15px;
+        .process-step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--neon-green);
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, rgba(126, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
-            padding: 100px 0;
+        /* About Section */
+        .about {
+            background: transparent;
             text-align: center;
         }
 
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: transparent;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
             color: var(--white);
         }
 
-        .cta-content p {
+        .final-cta p {
             font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
         }
 
         /* Footer */
         .footer {
-            background: var(--black);
+            background: transparent;
             padding: 60px 0 30px;
-            border-top: 1px solid rgba(126, 255, 0, 0.2);
+            border-top: 1px solid var(--medium-gray);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 3rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h3 {
             color: var(--neon-green);
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
-        .footer-section p,
         .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--light-gray);
             text-decoration: none;
-            line-height: 1.8;
             display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
         }
 
         .footer-section a:hover {
@@ -343,12 +360,47 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(126, 255, 0, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            line-height: 1.8;
         }
 
-        /* Animations */
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .highlight-text {
+                padding: 6px 12px;
+                font-size: 0.9em;
+                border-radius: 6px;
+            }
+            
+            .solution-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -359,179 +411,128 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-content h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .features,
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav container">
-            <a href="#" class="logo">Felipe Gascón</a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#proceso">Proceso</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="network-bg"></div>
+    <section class="hero">
+        <div class="animated-bg" id="animatedBg"></div>
         <div class="container">
             <div class="hero-content fade-in">
-                <h1>Convierte tus Redes Sociales en una <span class="highlight">Máquina de Atracción 24/7</span></h1>
-                <p>Usando Publicidad Estratégica y Automatizaciones Inteligentes para Network Marketing</p>
-                <a href="#contacto" class="cta-button">Agendar Sesión Estratégica GRATIS</a>
+                <h1>Deja de Perseguir Prospectos.<br><span class="highlight-text">Atrae a tu Equipo Ideal</span> en Piloto Automático.</h1>
+                <p>Convierto tus redes sociales en una máquina de atracción 24/7 usando Publicidad Estratégica y Automatizaciones Inteligentes, diseñada para líderes de Network Marketing.</p>
+                <a href="#contact" class="cta-button">AGENDA TU SESIÓN ESTRATÉGICA GRATUITA</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
+    <!-- Problem Section -->
+    <section class="section problem">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat fade-in">
-                    <span class="stat-number">500+</span>
-                    <div class="stat-label">Leads Generados Mensualmente</div>
+            <h2 class="section-title fade-in">¿Te Suena Familiar?</h2>
+            <div class="problem-grid">
+                <div class="problem-item fade-in">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horas perdidas</h3>
+                    <p>Pasas más tiempo enviando mensajes "copia y pega" que hablando con prospectos realmente interesados.</p>
                 </div>
-                <div class="stat fade-in">
-                    <span class="stat-number">85%</span>
-                    <div class="stat-label">Tasa de Conversión Promedio</div>
+                <div class="problem-item fade-in">
+                    <i class="fas fa-users-slash"></i>
+                    <h3>Lista agotada</h3>
+                    <p>Tu mercado caliente de amigos y familiares ya no es una opción y no sabes cómo encontrar gente nueva.</p>
                 </div>
-                <div class="stat fade-in">
-                    <span class="stat-number">24/7</span>
-                    <div class="stat-label">Automatización Activa</div>
+                <div class="problem-item fade-in">
+                    <i class="fas fa-fire"></i>
+                    <h3>Dinero quemado</h3>
+                    <p>Inviertes en publicidad en Facebook o Instagram sin un plan claro, sintiendo que solo estás perdiendo dinero.</p>
                 </div>
-                <div class="stat fade-in">
-                    <span class="stat-number">50+</span>
-                    <div class="stat-label">Networkers Exitosos</div>
+                <div class="problem-item fade-in">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Abrumado por la tecnología</h3>
+                    <p>Quieres automatizar, pero no sabes por dónde empezar, qué herramientas usar ni cómo conectarlas.</p>
+                </div>
+                <div class="problem-item fade-in">
+                    <i class="fas fa-battery-empty"></i>
+                    <h3>Agotamiento constante</h3>
+                    <p>Te sientes quemado haciendo las mismas tareas repetitivas todos los días sin ver el crecimiento que esperabas en tu equipo.</p>
+                </div>
+                <div class="problem-item fade-in">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Resultados inconsistentes</h3>
+                    <p>Un mes tienes buenos números, al siguiente todo se desploma. No logras crear un sistema predecible de generación de leads.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="servicios" class="section">
+    <!-- Solution Section -->
+    <section class="section solution">
         <div class="container">
-            <h2 class="section-title fade-in">¿Por qué tu Network Marketing no está creciendo como esperabas?</h2>
-            <div class="features">
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3>Publicidad Meta Ads Estratégica</h3>
-                    <p>Campañas optimizadas para atraer prospectos de calidad que están genuinamente interesados en oportunidades de negocio.</p>
+            <h2 class="section-title fade-in"><span style="color: var(--neon-green);">Mi Misión:</span> Convertir tu Esfuerzo en Resultados Exponenciales</h2>
+            <div class="solution-grid">
+                <div class="solution-item fade-in">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Publicidad Magnética<br>(Google & Meta ADS)</h3>
+                    <p>Dejamos de interrumpir a la gente. Creamos campañas de anuncios que atraen a las personas que YA están buscando una oportunidad como la tuya, directamente a tu embudo.</p>
                 </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Automatizaciones Inteligentes</h3>
-                    <p>Chatbots y secuencias automatizadas que nutren y califican leads mientras duermes, trabajando 24/7 por ti.</p>
+                <div class="solution-item fade-in">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Páginas de Aterrizaje que Convierten<br>(Landing Pages + SEO)</h3>
+                    <p>Diseñamos tu "oficina virtual" perfecta. Una página optimizada que presenta tu oportunidad de forma profesional, genera confianza y captura los datos de tus prospectos calificados, lista para los motores de búsqueda.</p>
                 </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Optimización de Conversiones</h3>
-                    <p>Páginas de aterrizaje diseñadas para convertir visitantes en leads calificados y posteriormente en socios de negocio.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Estrategia de Contenido</h3>
-                    <p>Contenido que posiciona tu autoridad y atrae naturalmente a personas interesadas en generar ingresos adicionales.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-target"></i>
-                    </div>
-                    <h3>Segmentación Avanzada</h3>
-                    <p>Identificamos y targeteamos específicamente a tu audiencia ideal usando datos demográficos y psicográficos precisos.</p>
-                </div>
-                <div class="feature fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-analytics"></i>
-                    </div>
-                    <h3>Análisis y Reportes</h3>
-                    <p>Métricas claras y reportes detallados para que veas exactamente cómo crece tu red y tu ROI en tiempo real.</p>
+                <div class="solution-item fade-in">
+                    <i class="fas fa-robot"></i>
+                    <h3>Tu Asistente Virtual 24/7<br>(Automatizaciones)</h3>
+                    <p>Imagina responder dudas frecuentes, agendar citas y hacer seguimiento por Instagram, WhatsApp o Messenger... mientras duermes. Creamos el sistema que trabaja por ti, para que tú te dediques a liderar.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
-    <section id="proceso" class="section">
+    <section class="section process">
         <div class="container">
-            <h2 class="section-title fade-in">Mi Proceso Probado de 4 Pasos</h2>
+            <h2 class="section-title fade-in">Tu Transformación en 3 Simples Pasos</h2>
             <div class="process-steps">
-                <div class="step fade-in">
+                <div class="process-step fade-in">
                     <div class="step-number">1</div>
                     <h3>Diagnóstico Estratégico</h3>
-                    <p>Analizamos tu situación actual, identificamos oportunidades y definimos objetivos claros para tu crecimiento.</p>
+                    <p>En nuestra sesión gratuita, analizamos tu negocio, tus metas y tus puntos de dolor para diseñar un plan de acción a tu medida.</p>
                 </div>
-                <div class="step fade-in">
+                <div class="process-step fade-in">
                     <div class="step-number">2</div>
-                    <h3>Configuración de Campañas</h3>
-                    <p>Creamos y lanzamos campañas de Meta Ads optimizadas para atraer prospectos de alta calidad a tu embudo.</p>
+                    <h3>Construcción del Sistema</h3>
+                    <p>Creamos y conectamos todas las piezas: tus campañas de anuncios, tu landing page y tus flujos de automatización.</p>
                 </div>
-                <div class="step fade-in">
+                <div class="process-step fade-in">
                     <div class="step-number">3</div>
-                    <h3>Automatización Completa</h3>
-                    <p>Implementamos chatbots y secuencias que califican, nutren y convierten leads automáticamente.</p>
-                </div>
-                <div class="step fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Optimización Continua</h3>
-                    <p>Monitoreamos, analizamos y optimizamos constantemente para maximizar tu ROI y crecimiento sostenible.</p>
+                    <h3>Lanzamiento y Optimización</h3>
+                    <p>Activamos tu máquina de atracción y monitoreamos los resultados para optimizarla continuamente y asegurar tu crecimiento.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section id="contacto" class="cta-section">
+    <!-- About Section -->
+    <section class="section about">
         <div class="container">
-            <div class="cta-content fade-in">
-                <h2>¿Listo para Transformar tu Network Marketing?</h2>
-                <p>Agenda una sesión estratégica GRATUITA de 60 minutos donde analizaremos tu situación actual y te mostraré exactamente cómo puedes empezar a generar leads de calidad de forma automatizada.</p>
-                <a href="https://calendly.com/felipe-gascon/sesion-estrategica-gratuita" target="_blank" class="cta-button">Agendar Mi Sesión GRATIS Ahora</a>
+            <div class="about-content fade-in">
+                <div class="profile-image">
+                    <img src="images/00049a copia 2.png" alt="Felipe Gascón" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <h2 class="section-title">Hola, soy Felipe Gascón</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Vengo del mundo del mercadeo en red y conozco tus desafíos de primera mano. Me cansé de los métodos anticuados y me obsesioné con la tecnología y el marketing digital. Ahora, mi única pasión es dar a líderes como tú las mismas herramientas y estrategias que usan las grandes empresas, para que puedas construir el negocio de tus sueños sin sacrificar tu tiempo ni tu vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section final-cta" id="contact">
+        <div class="container">
+            <div class="fade-in">
+                <h2>¿Listo para Dejar de Vender y Empezar a Liderar?</h2>
+                <p>El tiempo es tu activo más valioso. Deja que la tecnología haga el trabajo pesado. Agenda tu sesión estratégica gratuita y descubre el plan exacto para automatizar y escalar tu negocio de network marketing.</p>
+                <a href="#" class="cta-button" style="font-size: 1.2rem; padding: 20px 50px;">AGENDA TU SESIÓN ESTRATÉGICA GRATUITA</a>
             </div>
         </div>
     </section>
@@ -558,36 +559,34 @@
                     <a href="terms-conditions.html">Términos y Condiciones</a>
                     <a href="cookie-policy.html">Política de Cookies</a>
                 </div>
-                <div class="footer-section">
-                    <h3>CONTACTO</h3>
-                    <p>Email: contacto@felipegascon.com</p>
-                    <p>Especialista en Marketing Digital</p>
-                    <p>Network Marketing Automation</p>
-                </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Felipe Gascón. Todos los derechos reservados.</p>
+                <p>© 2024 Felipe Gascón. Todos los derechos reservados.</p>
+                <p>Este sitio no es parte del sitio web de Facebook o Meta Platforms, Inc. Además, este sitio NO está respaldado por Meta de ninguna manera. FACEBOOK es una marca registrada de META PLATFORMS, INC.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Network animation
+        // Animated Background
         function createNetworkLines() {
-            const networkBg = document.querySelector('.network-bg');
-            for (let i = 0; i < 5; i++) {
+            const bg = document.getElementById('animatedBg');
+            const lines = 15;
+            
+            for (let i = 0; i < lines; i++) {
                 const line = document.createElement('div');
                 line.className = 'network-line';
                 line.style.top = Math.random() * 100 + '%';
                 line.style.animationDelay = Math.random() * 8 + 's';
-                line.style.width = Math.random() * 200 + 100 + 'px';
-                networkBg.appendChild(line);
+                line.style.animationDuration = (8 + Math.random() * 4) + 's';
+                bg.appendChild(line);
             }
         }
 
-        // Fade in animation
+        // Fade in animation on scroll
         function fadeInOnScroll() {
             const elements = document.querySelectorAll('.fade-in');
+            
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
@@ -633,7 +632,7 @@
             });
             
             button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+                this.style.transform = 'translateY(-2px) scale(1)';
             });
         });
     </script>
